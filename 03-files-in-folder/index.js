@@ -1,7 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const readline = require('readline');
-const { stdin, stdout } = require('process');
+const { stdout } = require('process');
 
 const pathObj = path.join(__dirname, './secret-folder');
 
