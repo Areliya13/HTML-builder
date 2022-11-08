@@ -1,6 +1,7 @@
 const path = require('path');
 const { rm, mkdir, readdir, copyFile, readFile, writeFile } = require('fs/promises');
 const { createWriteStream } = require('fs');
+const { stdout } = require('process');
 
 const assetsInput = path.join(__dirname, 'assets');
 const stylesInput = path.join(__dirname, 'styles');
@@ -20,7 +21,7 @@ async function createPage() {
     await bundleCss(stylesInput, stylesOutput);
     await bundleHTML(htmlInput, htmlOutput, components);
   } catch (err) {
-    console.log(err.message);
+    stdout.write(err.message);
   }
 }
 
@@ -37,7 +38,7 @@ async function copyFolder(from, to) {
       }
     })
   } catch (err) {
-    console.log(err.message);
+    stdout.write(err.message);
   }
 }
 
@@ -52,7 +53,7 @@ async function copyFiles(from, to) {
         }
       });
   } catch (err) {
-    console.log(err.message);
+    stdout.write(err.message);
   }
 }
 
@@ -71,7 +72,7 @@ async function bundleCss(styles, distPath) {
       }
     }
   } catch (err) {
-    console.log(err.message);
+    stdout.write(err.message);
   }
 }
 
@@ -91,7 +92,7 @@ async function bundleHTML(template, htmlBundle, components) {
       await writeFile(htmlBundle, res);
     }
   } catch (err) {
-    console.log(err.message);
+    stdout.write(err.message);
   }
 }
 
